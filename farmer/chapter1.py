@@ -1,4 +1,5 @@
 import json
+from farmer.chapter2 import start2
 import import_character
 from item_add import add_item as additem
 import time
@@ -42,6 +43,14 @@ def start():
         print(f'{name}: 이제 농사방법을 알아봐야겠어.')
         time.sleep(1)
         print('농사 방법 : 오전에는 W키를 눌러 광합성을, 오후에는 A키를 눌러 물을 주고 저녁에는 D키를 눌러 온도를 유지해줘. 마지맞으로 밤에는 S키를 눌러 감자에게 사랑한다 말해봐! ')
+        time.sleep(1)
+        print(f'{name}: 준비됐으면 이제 enter키를 눌러 농사를 시작하자!')
+
+        x = input()
+
+        if x == "":
+            start2()
+
 
     
 
