@@ -7,5 +7,3 @@ def load_character():
     return data['name'], data['job']
 
 name, job = load_character()
-
-print(name, job)
