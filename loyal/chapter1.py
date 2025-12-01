@@ -1,5 +1,6 @@
 import json
 import import_character
+from item_add import add_item as additem
 import time
 
 tool = '명예 훈장'
@@ -13,9 +14,10 @@ def start():
 
     time.sleep(0.5)
 
-    print(f'{name}은 {tool}을 얻었다!')
-    time.sleep(0.5)
+    print(f'{name}은 {tool}을 가슴팍에 달아본다.')
+    time.sleep(1)
+    print(f'...')
 
-    print(f'{tool}을 얻었다.')
+    additem(tool)
     
 

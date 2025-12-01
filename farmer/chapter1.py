@@ -1,5 +1,6 @@
 import json
 import import_character
+from item_add import add_item as additem
 import time
 
 tool = '삽'
@@ -17,7 +18,7 @@ def start():
     print(f'{name}은 {tool}을 얻었다!')
     time.sleep(0.5)
 
-    print(f'{tool}을 얻었다.')
+    additem(tool)
     
 
     

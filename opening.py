@@ -35,4 +35,4 @@ def start():
     }
 
     with open("character_info", 'w') as f :
-        json.dump(character_info,f, indent=4)
+        json.dump(character_info,f, indent=4, ensure_ascii=False)
