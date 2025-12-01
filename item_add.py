@@ -1,7 +1,7 @@
 import json
 
 def load_item():
-    with open('character_info', 'r') as f:
+    with open('character_info', 'r',  encoding='utf-8') as f:
         data = json.load(f)
     return  data ['item']
 

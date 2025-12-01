@@ -34,5 +34,5 @@ def start():
         'item':[]
     }
 
-    with open("character_info", 'w') as f :
+    with open("character_info", 'w', encoding='utf-8') as f :
         json.dump(character_info,f, indent=4, ensure_ascii=False)
