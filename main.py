@@ -8,7 +8,7 @@ from loyal import chapter1 as l_ch1
 from king import chapter1 as ki_ch1
 
 opening.start()
-name, job = import_character.load_character()
+name, job, item = import_character.load_character()
 
 if job == 'servant':
     s_ch1.start()

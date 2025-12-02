@@ -6,7 +6,7 @@ import time
 
 tool = '삽'
 def start():
-    name, job = import_character.load_character()
+    name, job, item = import_character.load_character()
 
     print(f'{name}은 밭으로 들어왔다!')
 

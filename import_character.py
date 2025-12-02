@@ -4,6 +4,7 @@ def load_character():
     with open('character_info','r',encoding='utf-8') as f:
         data = json.load(f)
 
-    return data['name'], data['job']
+    return data['name'], data['job'], data['item']
 
-name, job = load_character()
+name, job, item = load_character()
+
