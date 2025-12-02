@@ -33,7 +33,7 @@ def use_item():
 
     if thing not in data['item']:
         print(f'{thing}을 갖고 있지 않다.')
-        return data['item']
+        return data['item'], None
     
     
     data['item'].remove(thing)
@@ -42,7 +42,7 @@ def use_item():
         json.dump(data, f , indent=4, ensure_ascii=False )
     print (f'{thing}을 사용했다!')
 
-    return data['item']
+    return data['item'], thing
 
 
 
