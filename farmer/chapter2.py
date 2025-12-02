@@ -1,4 +1,6 @@
 import import_character
+from item_add import add_item 
+import time, random
 name, job, item = import_character.load_character()
 
 
@@ -10,16 +12,16 @@ print('농사 방법 : 오전에는 W키를 눌러 광합성을,
 마지막으로 삽이 망가지면 S키를 눌러 삽을 수리해봐! ')
 '''
 time_zone = {'morning': ["W", 'w'],'noon':['A', 'a'],'afternoon':['D', 'd'],'broke':['S', 's']}
+item = '감자'
 
-
-def display_timezone():
-    if time_zone == 'morning':
+def display_timezone(zone):
+    if zone == 'morning':
         print(f'{name}: 햇빛 무럭무럭 빔~~~~~~.')
-    elif time_zone == 'noon':
+    elif zone == 'noon':
         print(f'{name}: 시원하게 물을 쫘아아악~~~~~.')
-    elif time_zone == 'afternoon':
+    elif zone == 'afternoon':
         print(f'{name}: 흙아 송송 숨을 쉬거라~~~~~.')
-    elif time_zone == 'broke':
+    elif zone == 'broke':
         print(f'{name}: 뚝딱뚝딱 수리 완료~~~~~.')
 
 round = 5
@@ -30,4 +32,36 @@ def start2():
 
     for i in range(round):
         print(f'============={i+1} / {round}===========')
+        zone = random.choice(list(time_zone.keys()))
+        display_timezone(zone)
+        
+        start = time.time()
+        key = input('>>> ').strip()
+        end = time.time()
+        duration = end - start
+
+        if duration > time_limit:
+            time.sleep(1)
+            print(f'{name}:.....')
+            time.sleep(1)
+            print('감자가 시들어버렸다!')
+            return
+
+        elif key not in time_zone[zone]:
+            time.sleep(1)
+            print(f'{name}: 으아악 실수 실수')
+            time.sleep(1)
+            print('감자가 시들어버렸다!')
+            return
+        
+        else:
+            pass
+
+time.sleep(1)
+print('감자가 주렁 주렁 열렸다!')
+time.sleep(1)
+print(f"{name}: 우왓~ 감자 풍년~~~~")
+time.sleep(1)
+add_item(item)
+
     
