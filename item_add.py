@@ -23,6 +23,22 @@ def add_item(item):
 
     return data['item']
 
+def use_item(thing):
+    with open('character_info', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    if thing not in data['item']:
+        print(f'{thing}을 갖고 있지 않다.')
+        return data['item']
+    
+    data['item'].remove(thing)
+
+    with open('character_info', 'w', encoding='utf-8' ) as f:
+        json.dump(data, f , indent=4, ensure_ascii=False )
+    print (f'{thing}을 사용했다!')
+
+    return data['item']
+
 
 
 
