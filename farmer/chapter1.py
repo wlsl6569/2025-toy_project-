@@ -1,5 +1,6 @@
 import json
 from farmer.chapter2 import start2
+
 import import_character
 from item_add import add_item as additem
 import time
@@ -11,19 +12,23 @@ def start():
 
     print(f'{name}은 밭으로 들어왔다!')
 
-    time.sleep(0.5)
+    time.sleep(1)
 
     print(f'기왕 내가 선택한 {job}... 최고의 {job}이 되어주마!')
 
-    time.sleep(0.5)
+    time.sleep(1)
+
+    print('...?')
+
+    time.sleep(1)
 
     print(f'{name}은 땅바닥에서 {tool}을 발견했다.')
-    time.sleep(0.5)
+    time.sleep(1)
 
     additem(tool)
 
     time.sleep(1)
-    print('이제 농사를 지어볼까? /n select Y(yes) or N(no)')
+    print('이제 농사를 지어볼까? \n select Y(yes) or N(no)')
 
     time.sleep(0.5)
     select = input('>>>')

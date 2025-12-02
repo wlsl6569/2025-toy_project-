@@ -23,13 +23,18 @@ def add_item(item):
 
     return data['item']
 
-def use_item(thing):
+def use_item():
+
     with open('character_info', 'r', encoding='utf-8') as f:
         data = json.load(f)
+    print(data['item'])
+    print('어떤 아이템을 사용하시겠습니까?')
+    thing = str(input(">>> ").strip())
 
     if thing not in data['item']:
         print(f'{thing}을 갖고 있지 않다.')
         return data['item']
+    
     
     data['item'].remove(thing)
 

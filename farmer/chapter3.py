@@ -11,7 +11,7 @@ def start3():
     time.sleep(1)
     print(f'{name}: 열심히 일했더니 출출하군.')
     time.sleep(1)
-    use_item('감자')
+    use_item()
     time.sleep(1)
     print('모닥불에 감자를 넣었다.')
     time.sleep(1)
