@@ -19,7 +19,7 @@ def add_item(item):
     with open('character_info', 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-    print(f'{item}을 얻었다!')
+    print(f'"{item}"가 인벤토리에 추가됐다!')
 
     return data['item']
 

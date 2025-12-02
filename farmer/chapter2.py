@@ -1,6 +1,8 @@
 import import_character
 from item_add import add_item 
 import time, random
+from farmer.chapter3 import start3
+
 name, job, item = import_character.load_character()
 
 
@@ -24,14 +26,14 @@ def display_timezone(zone):
     elif zone == 'broke':
         print(f'{name}: 뚝딱뚝딱 수리 완료~~~~~.')
 
-round = 5
+rounds = 5
 time_limit = 2
 
 def start2():
     print(f'{name}: 좋아 농사 시작이다! 우하하하하항')
 
-    for i in range(round):
-        print(f'============={i+1} / {round}===========')
+    for i in range(rounds):
+        print(f'============={i+1} / {rounds}===========')
         zone = random.choice(list(time_zone.keys()))
         display_timezone(zone)
         
@@ -42,7 +44,7 @@ def start2():
 
         if duration > time_limit:
             time.sleep(1)
-            print(f'{name}:.....')
+            print(f'{name}:....너무 늦었어.')
             time.sleep(1)
             print('감자가 시들어버렸다!')
             return
@@ -55,13 +57,13 @@ def start2():
             return
         
         else:
-            pass
+            time.sleep(1)
+            print('감자가 자랐다!')
 
-time.sleep(1)
-print('감자가 주렁 주렁 열렸다!')
-time.sleep(1)
-print(f"{name}: 우왓~ 감자 풍년~~~~")
-time.sleep(1)
-add_item(item)
 
-    
+    time.sleep(1)
+    print(f"{name}: 우왓~ 감자 풍년~~~~")
+    time.sleep(1)
+    add_item(item)
+    start3()
+

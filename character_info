@@ -1,7 +1,8 @@
 {
-    "name": "jinny",
+    "name": "jindor",
     "job": "farmer",
     "item": [
-        "삽"
+        "삽",
+        "감자"
     ]
 }
