@@ -1,7 +1,7 @@
 import import_character
 from item_add import add_item 
 import time, random
-from farmer.chapter3 import start3
+from servant.chapter3 import start3
 
 name, job, item = import_character.load_character()
 

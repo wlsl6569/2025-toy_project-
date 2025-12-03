@@ -1,7 +1,7 @@
 import time
 import json
 
-class_type = ["servant", "farmer", "knight", "loyal", "king"]
+class_type = ["farmer", "knight", "loyal", "king"]
 
 def start():
 
@@ -21,7 +21,7 @@ def start():
     print(f"...")
 
     time.sleep(0.5)
-    print(f"{name}님은 이 시대에 어떤 일을 하고 있나요? \n 0 : {class_type[0]} 1 : {class_type[1]} 2 : {class_type[2]}  3 :  {class_type[3]}  4 :{class_type[4]}")
+    print(f"{name}님은 이 시대에 어떤 일을 하고 있나요? \n 0 : {class_type[0]} 1 : {class_type[1]}  2 :  {class_type[2]}  3 :{class_type[3]}")
 
     job = class_type[int(input())]
     time.sleep(1)
@@ -36,3 +36,4 @@ def start():
 
     with open("character_info", 'w', encoding='utf-8') as f :
         json.dump(character_info,f, indent=4, ensure_ascii=False)
+

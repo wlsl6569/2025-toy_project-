@@ -6,5 +6,5 @@ def load_character():
 
     return data['name'], data['job'], data['item']
 
-name, job, item = load_character()
+#name, job, item = load_character()
 

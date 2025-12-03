@@ -33,7 +33,7 @@ def start():
     time.sleep(0.5)
     select = input('>>>')
     if select in ['N','n','no','NO','No']:
-        print(f'{name}은 굶어 죽었다.')
+        print(f'{name}은 성에서 쫓겨났다.')
         return
     
     elif select in ['Y','YES','Yes','yes','y']:

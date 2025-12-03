@@ -1,5 +1,5 @@
 import json
-from farmer.chapter2 import start2
+from servant.chapter2 import start2
 
 import import_character
 from item_add import add_item as additem
