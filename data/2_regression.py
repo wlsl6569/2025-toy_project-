@@ -34,14 +34,46 @@ print(y_test.shape)
 
 # 리니어 모델 생성
 # 이니셜 가중치와 편향
-init_w = np.random.randint(0,1,range(6))
+n_samples = X_train.shape[0]
+init_w = np.random.randint(0,1,size=n_samples)
 init_b = 0.0
-def linear_regression(X, y):
-    # forward
-    z = X @ init_w + init_b
-    
-    # 손실 계산
 
-    # 손실 미분 
+#print(n_samples)
 
-    # backward(업데이트)
+# 선형 회귀 
+def linear_regression(X, y, lr=0.01, epochs=1000):
+    n_samples, n_features = X.shape
+
+    # 초기 가중치, 편향
+    w = np.random.randn(n_features)   # (5,)
+    b = 0.0
+
+    for epoch in range(epochs):
+        # forward
+        y_pred = X @ w + b            # (n,)
+
+        # error & loss
+        error = y_pred - y            # (n,)
+        loss = np.mean(error**2)
+
+        # gradient (dw, db)
+        dw = (2 / n_samples) * (X.T @ error)    # (5,)
+        db = (2 / n_samples) * np.sum(error)    # scalar
+
+        # update
+        w -= lr * dw
+        b -= lr * db
+
+        # 중간 출력
+        if (epoch + 1) % 200 == 0:
+            print(f"{epoch+1}/{epochs} epochs, loss={loss:.4f}")
+
+    return w, b
+
+
+# 5. 학습 돌리기
+w_learned, b_learned = linear_regression(X_train, y_train, lr=0.01, epochs=1000)
+
+print("학습된 w:", w_learned)
+print("학습된 b:", b_learned)
+
