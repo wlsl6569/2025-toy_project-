@@ -34,7 +34,7 @@ print(y_test.shape) # (60, 1)
 
 # 리니어 모델 생성
 # 이니셜 가중치와 편향
-n_samples = X.shape[1]
+n_samples = X.shape[0]
 init_w = np.random.randint(0,1,size=n_samples)
 init_b = 0.0
 

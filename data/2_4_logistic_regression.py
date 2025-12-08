@@ -17,20 +17,50 @@ y = df['rank_up_success'].values # 1차원배열 (300,)
 X_train, X_test, y_train, y_test = train_test_split(X,y)
 
 
+# 초기 w, b값 결정
+n_samples = X.shape[0]
+w = np.random.randint(n_samples)
+b = 0
+
+
+# 시그모이드 함수 정의
+def sigmoid(z):
+    p = 1/(1+np.exp**x)
+    return p
 
 
 # 모델 정의
 def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
+
     # 들어오는 데이터 X에서 feature 갯수와 sample 갯수 찾기
+    n_samples, n_features = X.shape
+    
+    for epoch in epochs:
 
-    # z값 구하기
+        # z값 구하기
+        z = X @ w + b
 
-    # sigmoid 확률분포에 z값 매핑
+        # sigmoid 확률분포에 z값 매핑
+        p = sigmoid(z)
 
-    # 임계값을 넘는가?
+        # 임계값을 넘는가?
+        if p >= 0.5 :
+            y_pred = 1
+        else:
+            y_pred = 0
 
-    # error와 Loss(손실값) 정의
+        # error와 Loss(손실값) 정의
+        error = y_pred-y
+        L = 1/n_samples(sum(error))
 
-    # 에포크 수만큼 반복
+        # dw db 정의
+        pass
+
+        # w, b 업데이트
+        pass
+
+        # 에포크 수만큼 반복
+        if epoch+1 % 200 == 0:
+            print(f'blah blah blah')
 
     
