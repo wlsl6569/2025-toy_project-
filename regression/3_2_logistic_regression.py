@@ -17,20 +17,22 @@ y = df['rank_up_success'].values # 1차원배열 (300,)
 X_train, X_test, y_train, y_test = train_test_split(X,y)
 
 
-# 초기 w, b값 결정
-n_samples, n_features = X.shape
-w = np.random.randn(n_features) # (300,5) @ (5, )가 되어야 함.
-b = 0
+
 
 
 # 시그모이드 함수 정의
 def sigmoid(z):
-    p = 1/(1+np.exp^(-z))
+    p = 1/(1+np.exp(-z))
     return p
 
 
 # 모델 정의
 def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
+
+    # 초기 w, b값 결정
+    n_samples, n_features = X.shape
+    w = np.random.randn(n_features) # (300,5) @ (5, )가 되어야 함.
+    b = 0 
 
     # 들어오는 데이터 X에서 feature 갯수와 sample 갯수 찾기
     n_samples, n_features = X.shape
@@ -38,7 +40,7 @@ def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
     for epoch in range(epochs):
 
         # z값 구하기
-        z = X @ w + b
+        z = X @ w + b 
 
         # sigmoid 확률분포에 z값 매핑
         p = sigmoid(z)
@@ -57,7 +59,7 @@ def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
         # error와 Loss(손실값) 정의
         error = y_pred-y
         L_op1 = 1/n_samples*(sum(error**2))   # 첫번째 손실함수 옵션 : MSE
-        L_op2 = # 두번째 : 손실함수 옵션 Binary Cross Entropy
+        L_op2 = -(1/n_samples) * np.sum(y*np.log(p + 1e-8) + (1-y)*np.log(1 - p + 1e-8)) # 두번째 손실함수 옵션 : BCE, p에 아주작은 수를 더한 이유는 log(0) => 정의 불가는 이어서
 
         # dw db 정의
         dw = (2 / n_samples) * (X.T @ error)  
@@ -68,9 +70,13 @@ def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
         b -= db
 
         # 에포크 수만큼 반복
-        if epoch+1 % 200 == 0:
-            print(f'====== train : {epoch}/{epochs}, loss : {L} ========')
+        if (epoch) % 200 == 0:
+            print(f'====== train : {epoch}/{epochs}, loss : {L_op2:.3f} ========')
+
     
     return w,b
 
     
+w,b = logistic_regression(X_train, y_train, lr = 0.0001, epochs=1000)
+print(f'{w}')
+print(f'{b:.3f}')
