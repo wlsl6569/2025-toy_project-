@@ -25,7 +25,7 @@ b = 0
 
 # 시그모이드 함수 정의
 def sigmoid(z):
-    p = 1/(1+np.exp**x)
+    p = 1/(1+np.exp**z)
     return p
 
 
@@ -54,13 +54,17 @@ def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
         L = 1/n_samples(sum(error))
 
         # dw db 정의
-        pass
+        dw = (2 / n_samples) * (X.T @ error)  
+        db = (2 / n_samples) * np.sum(error)
 
         # w, b 업데이트
-        pass
+        w -= dw
+        b -= db
 
         # 에포크 수만큼 반복
         if epoch+1 % 200 == 0:
-            print(f'blah blah blah')
+            print(f'====== train : {epoch}/{epochs}, loss : {L} ========')
+    
+    return w,b
 
     
