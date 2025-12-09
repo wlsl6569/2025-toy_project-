@@ -18,14 +18,14 @@ X_train, X_test, y_train, y_test = train_test_split(X,y)
 
 
 # 초기 w, b값 결정
-n_samples = X.shape[0]
-w = np.random.randint(n_samples)
+n_samples, n_features = X.shape
+w = np.random.randn(n_features) # (300,5) @ (5, )가 되어야 함.
 b = 0
 
 
 # 시그모이드 함수 정의
 def sigmoid(z):
-    p = 1/(1+np.exp**z)
+    p = 1/(1+np.exp^(-z))
     return p
 
 
@@ -35,7 +35,7 @@ def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
     # 들어오는 데이터 X에서 feature 갯수와 sample 갯수 찾기
     n_samples, n_features = X.shape
     
-    for epoch in epochs:
+    for epoch in range(epochs):
 
         # z값 구하기
         z = X @ w + b
@@ -44,14 +44,20 @@ def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
         p = sigmoid(z)
 
         # 임계값을 넘는가?
-        if p >= 0.5 :
-            y_pred = 1
-        else:
-            y_pred = 0
+        y_pred = []
+        
+        for prob in p:
+            if prob >= 0.5:
+                y_pred.append(1)
+            else :
+                y_pred.append(0)
+        y_pred = np.array(y_pred)   # list를 넘파이 행렬로 바꾸기
+        
 
         # error와 Loss(손실값) 정의
         error = y_pred-y
-        L = 1/n_samples(sum(error))
+        L_op1 = 1/n_samples*(sum(error**2))   # 첫번째 손실함수 옵션 : MSE
+        L_op2 = # 두번째 : 손실함수 옵션 Binary Cross Entropy
 
         # dw db 정의
         dw = (2 / n_samples) * (X.T @ error)  
