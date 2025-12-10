@@ -57,13 +57,14 @@ def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
         
 
         # error와 Loss(손실값) 정의
-        error = y_pred-y
-        L_op1 = 1/n_samples*(sum(error**2))   # 첫번째 손실함수 옵션 : MSE
+        error_1 = y_pred-y # for MSE
+        error_2 = p-y # for BCE
+        L_op1 = 1/n_samples*(sum(error_1**2))   # 첫번째 손실함수 옵션 : MSE
         L_op2 = -(1/n_samples) * np.sum(y*np.log(p + 1e-8) + (1-y)*np.log(1 - p + 1e-8)) # 두번째 손실함수 옵션 : BCE, p에 아주작은 수를 더한 이유는 log(0) => 정의 불가는 이어서
 
         # dw db 정의
-        dw = (2 / n_samples) * (X.T @ error)  
-        db = (2 / n_samples) * np.sum(error)
+        dw = (2 / n_samples) * (X.T @ error_2)  
+        db = (2 / n_samples) * np.sum(error_2)
 
         # w, b 업데이트
         w -= dw
@@ -80,3 +81,63 @@ def logistic_regression(X,y,lr = 0.0001, epochs = 1000):
 w,b = logistic_regression(X_train, y_train, lr = 0.0001, epochs=1000)
 print(f'{w}')
 print(f'{b:.3f}')
+
+
+# --------------------------------------------------------------------------------
+# test
+# --------------------------------------------------------------------------------
+
+
+
+def evaluate_logistic(X, y, w, b):
+    n_samples, n_features = X.shape
+
+    # z, p
+    z = X @ w + b
+    p = sigmoid(z)
+
+    # 0/1 예측
+    y_pred = (p >= 0.5).astype(int)
+
+    # BCE loss
+    loss = -(1/n_samples) * np.sum(
+        y * np.log(p + 1e-8) + (1-y) * np.log(1 - p + 1e-8)
+    )
+
+    # accuracy
+    accuracy = np.mean(y_pred == y)
+
+    return loss, accuracy, p, y_pred
+
+
+test_loss, test_acc, p_test, y_pred_test = evaluate_logistic(X_test, y_test, w, b)
+print(f"Test Loss (BCE): {test_loss:.4f}")
+print(f"Test Accuracy: {test_acc:.4f}")
+
+
+'''
+====== train : 0/1000, loss : 8.089 ========
+====== train : 200/1000, loss : 3.212 ========
+====== train : 400/1000, loss : 2.411 ========
+====== train : 600/1000, loss : 2.057 ========
+====== train : 800/1000, loss : 2.357 ========
+[-0.11895298  2.70228051  2.92625402  0.37727846 -0.79858933]
+-20.263
+Test Loss (BCE): 2.2139
+Test Accuracy: 0.7467
+
+
+
+
+====== train : 0/1000, loss : 2.356 ========
+====== train : 200/1000, loss : 2.855 ========
+====== train : 400/1000, loss : 3.194 ========
+====== train : 600/1000, loss : 1.625 ========
+====== train : 800/1000, loss : 0.816 ========
+[2.44096691 3.99707003 3.9302199  2.45796312 1.30183932]
+-22.962
+Test Loss (BCE): 2.4484
+Test Accuracy: 0.8533
+->정답은 많이 맞췄지만, 확률값(p)이 대체로 0.5 근처라서 자신감이 낮았음. 그래서 log loss가 크게 나왔다
+
+'''
