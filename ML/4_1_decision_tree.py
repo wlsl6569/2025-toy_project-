@@ -30,8 +30,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 clf = DecisionTreeClassifier(random_state=0)
 
 
-scores = cross_val_score(clf, X_train, y_train, cv=10)
+scores = cross_val_score(clf, X_train, y_train, cv=10) # cv 는 cross validation folds 갯수를 의미
 
-print("각 폴드 점수:", scores)
+print("각 폴드 점수:", scores)   
 print("평균 정확도:", scores.mean())
 print("표준편차:", scores.std())
