@@ -23,14 +23,16 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.2)
 
 
 rf = RandomForestClassifier(
-    n_estimators=100,      # 나무 개수
+    n_estimators=100,      # 단순 나무 개수, bootstrap아님
     max_depth=None,
-    random_state=42
+    random_state=42, 
+    bootstrap = True,  # 어떤 데이터 사용할지 랜덤으로 매번 '복원추출'한다. 한개 데이터를 여러볼 볼 수 있고 어떤 데이터는 아예 안볼 가능성도 있음 : 전체 데이터셋에 대한 과적합 줄이면서도 숲전체적으로 여러번 데이터를 훑는 방법이라 할 수 있겠음.
+    max_features='sqrt'  # feature 랜덤성
 )
 
 rf.fit(X_train, y_train)
 accuracy = rf.score(X_test, y_test)
 
-print("Random Forest 정확도:", accuracy)
+print("정확도:", accuracy)
 
 
